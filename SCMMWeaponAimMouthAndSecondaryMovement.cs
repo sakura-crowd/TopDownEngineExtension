@@ -109,11 +109,6 @@ public class SCMMWeaponAimMouthAndSecondaryMovement : MonoBehaviour
     /// <returns></returns>
     void SwitchAimControlSecondaryMovementIfEntered()
     {
-        if ((_weapon.Owner == null) || (_weapon.Owner.LinkedInputManager == null))
-        {
-            return; // 呼び出しの前提条件が満たされていません。
-        }
-
         // 武器の所持者に紐づく InputManager を取得。多人数プレイもあるため？
         InputManager inputManager = _weapon.Owner.LinkedInputManager;
 
