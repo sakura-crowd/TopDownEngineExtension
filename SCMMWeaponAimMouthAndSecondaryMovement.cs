@@ -52,6 +52,21 @@ public class SCMMWeaponAimMouthAndSecondaryMovement : MonoBehaviour
             Debug.LogWarning(this.name + " : the SCMMWeaponAimMouthAndSecondaryMovement on this object requires that you add either a WeaponAim2D or WeaponAim3D component to your weapon.");
             return; // 同じゲームオブジェクトに必要なコンポーネント(WeaponAim 派生クラスのコンポーネント)が見つからなかったため正常に動作しません。
         }
+        if (_weapon == null)
+        {
+            Debug.LogWarning(this.name + " : the SCMMWeaponAimMouthAndSecondaryMovement on this object requires that you add either a Weapon(Derived) to your weapon.");
+            return; // 同じゲームオブジェクトに必要なコンポーネント(Weapon 派生クラスのコンポーネント)が見つからなかったため正常に動作しません。
+        }
+        if (_weapon.Owner == null)
+        {
+            Debug.LogWarning(this.name + " : Weapon.Owner == null at Start SCMMWeaponAimMouthAndSecondaryMovement.cs");
+            return; // 同じゲームオブジェクトに必要なコンポーネント(WeaponAim 派生クラスのコンポーネント)が見つからなかったため正常に動作しません。
+        }
+        if (_weapon.Owner.LinkedInputManager == null)
+        {
+            Debug.LogWarning(this.name + " : Weapon.Owner.LinkedInputManager == null at Start SCMMWeaponAimMouthAndSecondaryMovement.cs");
+            return; // 同じゲームオブジェクトに必要なコンポーネント(WeaponAim 派生クラスのコンポーネント)が見つからなかったため正常に動作しません。
+        }
     }
 
     // Update is called once per frame
@@ -60,7 +75,7 @@ public class SCMMWeaponAimMouthAndSecondaryMovement : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (_weaponAim == null)
+        if (_weaponAim == null || _weapon == null || _weapon.Owner == null || _weapon.Owner.LinkedInputManager == null)
         {
             return; // 同じゲームオブジェクトに必要なコンポーネント(WeaponAim 派生クラスのコンポーネント)が見つからなかったため正常に動作しません。
         }
